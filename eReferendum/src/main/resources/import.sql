@@ -1,0 +1,9 @@
+INSERT INTO referendums(type,start_date_time,end_date_time,number_of_eligible_voters,number_of_ballots,turnout_at11,turnout_at14,turnout_at17,region_id,city_id) VALUES (0,'2021-01-24T07:00:00.000Z','2021-01-24T18:00:00.000Z',1765,1050,251,584,875,null,863); 
+INSERT INTO referendums(type,start_date_time,end_date_time,number_of_eligible_voters,number_of_ballots,turnout_at11,turnout_at14,turnout_at17,region_id,city_id) VALUES (1,'2021-01-17T07:00:00.000Z','2021-01-17T18:00:00.000Z',9587,5230,1750,3432,4300,1,null);
+INSERT INTO referendums(type,start_date_time,end_date_time,number_of_eligible_voters,number_of_ballots,turnout_at11,turnout_at14,turnout_at17,region_id,city_id) VALUES (2,'2021-01-31T07:00:00.000Z','2021-01-31T18:00:00.000Z',20103,12456,2405,6450,9743,null,null);
+
+INSERT INTO referendum_questions(question,against_votes,composed_votes,for_votes,invalid_votes,referendum_id) VALUES ('Svaki građanin Republike Hrvatske ima pravo na vlastito parking mjesto.',520,200,300,30,1);
+INSERT INTO referendum_questions(question,against_votes,composed_votes,for_votes,invalid_votes,referendum_id) VALUES ('Jeste li za to da se Vrlić smiluje ekipi sa blesavim imenom?',130,10,860,50,1);
+INSERT INTO referendum_questions(question,against_votes,composed_votes,for_votes,invalid_votes,referendum_id) VALUES ('Jeste li za to da pamidora bude kvalificirana kao povrće?',3540,400,1587,60,2);
+INSERT INTO referendum_questions(question,against_votes,composed_votes,for_votes,invalid_votes,referendum_id) VALUES ('Jeste li za to da dark mode bude default na browserima?',7200,520,4400,336,3);
+INSERT INTO referendum_questions(question,against_votes,composed_votes,for_votes,invalid_votes,referendum_id) VALUES ('Osnovno ljudsko pravo je imati osiguranu besplatnu veliku s ladnim svako jutro.',6500,500,5000,456,3); 

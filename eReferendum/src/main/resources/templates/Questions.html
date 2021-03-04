@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>Questions</title>
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="icon" href="/favicon.ico" />
+	<link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+	<link rel="stylesheet" type="text/css" href="/styles.css" />
+</head>
+
+<body>
+	<header>
+		<a href="/home"><img src="/logo192.png" alt="eReferendum" /></a>
+		<h1>eReferendum</h1>
+	</header>
+	<nav>
+		<a href="/referendums/view">Referendums</a>
+		<a href="/referendumQuestions/view"><strong>Questions</strong></a>
+	</nav>
+	<main>
+		<div class="table-nav">
+			<h2>Questions</h2>
+			<div class="pagination">
+				<a th:href="@{${prevLink}}">&lt;&lt;</a>
+				<strong th:text="|${questionsPage.number + 1} of  ${questionsPage.totalPages}|" />
+				<a th:href="@{${nextLink}}">&gt;&gt;</a>
+			</div>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>Question</th>
+					<th>For votes</th>
+					<th>Against votes</th>
+					<th>Composed votes</th>
+					<th>Invalid votes</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="question: ${questionsPage}">
+					<td th:text="${question.question}" />
+					<td th:text="${question.forVotes}" />
+					<td th:text="${question.againstVotes}" />
+					<td th:text="${question.composedVotes}" />
+					<td th:text="${question.invalidVotes}" />
+					<td><a th:href="@{view/{id}(id=${question.id})}"><button type="button">👀</button></a>
+				</tr>
+			</tbody>
+		</table>
+		<div class="table-footer">
+			<span th:text="|Total rows: ${questionsPage.totalElements}|" />
+			<div class="rows-per-page-select">
+				<span>Rows per page: </span>
+				<a th:href="@{view(size=10)}">10</a>
+				<a th:href="@{view(size=25)}">25</a>
+				<a th:href="@{view(size=50)}">50</a>
+				<a th:href="@{view(size=100)}">100</a>
+			</div>
+		</div>
+	</main>
+	<hr />
+	<footer>
+		<small th:text="|&copy; Copyright ${#dates.year(#dates.createNow())} Sa_blesavim_imenom.org|" />
+	</footer>
+</body>
+
+</html>

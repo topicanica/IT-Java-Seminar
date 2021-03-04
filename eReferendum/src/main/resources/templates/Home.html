@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>Home</title>
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="icon" href="/favicon.ico" />
+	<link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+	<link rel="stylesheet" type="text/css" href="/styles.css" />
+</head>
+
+<body>
+	<header>
+		<a href="/home"><img src="/logo192.png" alt="eReferendum" /></a>
+		<h1>eReferendum</h1>
+	</header>
+	<nav>
+		<a href="/referendums/view">Referendums</a>
+		<a href="/referendum-questions/view">Questions</a>
+	</nav>
+	<main>
+		<h2>Welcome to eReferendum! 👋</h2>
+		<p>Use the links above to navigate through the application.</p>
+	</main>
+</body>
+<footer>
+	<small th:text="|&copy; Copyright ${#dates.year(#dates.createNow())} Sa_blesavim_imenom.org|" />
+</footer>
+
+</html>

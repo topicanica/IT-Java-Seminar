@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>View Question</title>
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="icon" href="/favicon.ico" />
+	<link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+	<link rel="stylesheet" type="text/css" href="/styles.css" />
+</head>
+
+<body>
+	<header>
+		<a href="/home"><img src="/logo192.png" alt="eReferendum" /></a>
+		<h1>eReferendum</h1>
+	</header>
+	<nav>
+		<a href="/referendums/view">Referendums</a>
+		<a href="/referendum-questions/view"><strong>Questions</strong></a>
+	</nav>
+	<main>
+		<div class="table-nav">
+			<h2>Question</h2>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>Question</th>
+					<th>For votes</th>
+					<th>Against votes</th>
+					<th>Composed votes</th>
+					<th>Invalid votes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:object=${question}>
+					<td th:text="${question.question}" />
+					<td th:text="${question.forVotes}" />
+					<td th:text="${question.againstVotes}" />
+					<td th:text="${question.composedVotes}" />
+					<td th:text="${question.invalidVotes}" />
+				</tr>
+			</tbody>
+		</table>
+	</main>
+	<hr />
+	<footer>
+		<small th:text="|&copy; Copyright ${#dates.year(#dates.createNow())} Sa_blesavim_imenom.org|" />
+	</footer>
+</body>
+
+</html>

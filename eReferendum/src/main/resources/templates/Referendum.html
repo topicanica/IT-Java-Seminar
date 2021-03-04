@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>Referendums</title>
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="icon" href="/favicon.ico" />
+	<link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+	<link rel="stylesheet" type="text/css" href="/styles.css" />
+</head>
+
+<body>
+	<header>
+		<a href="/home"><img src="/logo192.png" alt="eReferendum" /></a>
+		<h1>eReferendum</h1>
+	</header>
+	<nav>
+		<a href="/referendums/view"><strong>Referendums</strong></a>
+		<a href="/referendum-questions/view">Questions</a>
+	</nav>
+	<main>
+		<h2>Referendum</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Start time</th>
+					<th>End time</th>
+					<th>Type</th>
+					<th>Questions</th>
+				</tr>
+			</thead>
+			<tr th:object="${referendum}">
+				<td
+					th:text="${referendum.startDateTime.toLocalDate()} +' '+ ${referendum.startDateTime.toLocalTime()} " />
+				<td th:text="${referendum.endDateTime.toLocalDate()} +' '+ ${referendum.endDateTime.toLocalTime()} " />
+				<td th:text="${referendum.type.displayValue}" />
+				<td>
+					<table>
+						<tr th:each="question: ${referendum.questions}">
+							<td th:text="${question.question}" />
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</main>
+	<footer>
+		<small th:text="|&copy; Copyright ${#dates.year(#dates.createNow())} Sa_blesavim_imenom.org|" />
+	</footer>
+	<script src="/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>Referendums</title>
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="icon" href="/favicon.ico" />
+	<link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+	<link rel="stylesheet" type="text/css" href="/styles.css" />
+</head>
+
+<body>
+	<header>
+		<a href="/home"><img src="/logo192.png" alt="eReferendum" /></a>
+		<h1>eReferendum</h1>
+	</header>
+	<nav>
+		<a href="/referendums/view"><strong>Referendums</strong></a>
+		<a href="/referendum-questions/view">Questions</a>
+	</nav>
+	<main>
+		<div class="table-nav">
+			<div class="table-nav-title">
+				<h2>Referendums</h2>
+				<a href="/referendums/create"><button>+</button></a>
+			</div>
+			<div class="pagination">
+				<a th:href="@{${prevLink}}">&lt;&lt;</a>
+				<strong th:text="|${referendumsPage.number + 1} of ${referendumsPage.totalPages}|"></strong>
+				<a th:href="@{${nextLink}}">&gt;&gt;</a>
+			</div>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>Start</th>
+					<th>End</th>
+					<th>Type</th>
+					<th>Questions</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="referendum: ${referendumsPage}">
+					<td
+						th:text="${referendum.startDateTime.toLocalDate()} +' '+ ${referendum.startDateTime.toLocalTime()} " />
+					<td
+						th:text="${referendum.endDateTime.toLocalDate()} +' '+ ${referendum.endDateTime.toLocalTime()} " />
+					<td th:text="${referendum.type.displayValue}" />
+					<td>
+						<a th:href="@{/referendum-questions/referendum/{id}(id=${referendum.id})}"><button
+								type="button">👀</button></a>
+					</td>
+					<td>
+						<a th:href="@{view/{id}(id=${referendum.id})}"><button type="button">👀</button></a>
+						<a th:href="@{update/{id}(id=${referendum.id})}"><button type="button">📝</button></a>
+						<a th:href="@{delete/{id}(id=${referendum.id})}"><button type="button">✖</button></a>
+					</td>
+				</tr>
+			<tbody>
+		</table>
+		<div class="table-footer">
+			<span th:text="|Total rows: ${referendumsPage.totalElements}|"></span>
+			<div class="rows-per-page-select">
+				<span>Rows per page: </span>
+				<a th:href="@{view(size=10)}">10</a>
+				<a th:href="@{view(size=25)}">25</a>
+				<a th:href="@{view(size=50)}">50</a>
+				<a th:href="@{view(size=100)}">100</a>
+			</div>
+		</div>
+	</main>
+	<hr>
+	<footer>
+		<small th:text="|&copy; Copyright ${#dates.year(#dates.createNow())} Sa_blesavim_imenom.org|" />
+	</footer>
+</body>
+
+</html>

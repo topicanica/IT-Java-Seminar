@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>Add Referendum</title>
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="icon" href="/favicon.ico" />
+	<link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+	<link rel="stylesheet" type="text/css" href="/styles.css" />
+</head>
+
+<body>
+	<header>
+		<a href="/home"><img src="/logo192.png" alt="eReferendum" /></a>
+		<h1>eReferendum</h1>
+	</header>
+	<nav>
+		<a href="/referendums/view"><strong>Referendums</strong></a>
+		<a href="/referendum-questions/view">Questions</a>
+	</nav>
+	<main>
+		<div>
+			<h2>Create your referendum</h2>
+			<form method="POST" th:object="${referendum}" th:action="@{create}">
+
+				<select name="type">
+					<option th:each="refType : ${T(org.SBI.eReferendum.models.ReferendumType).values()}"
+						th:value="${refType}" th:text="${refType.displayValue}" th:field="*{type}"></option>
+				</select>
+				<div>
+					<input th:required="required" th:attr="min=${#dates.createNow()}" name="startDateTime"
+						type="datetime-local" th:field="*{startDateTime}" placeholder="Start time">
+				</div>
+
+				<div>
+					<input th:required="required" th:attr="min=${#dates.createNow()}" name="endDateTime"
+						type="datetime-local" th:field="*{endDateTime}" placeholder="End time">
+				</div>
+				<div>
+					<select name="regionId">
+						<option th:each="region : ${regions}" th:value="${region.id}" th:text="${region.name}"
+							th:field="*{regionId} "></option>
+					</select>
+				</div>
+				<div>
+					<select name="cityId">
+						<option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"
+							th:field="*{cityId}"></option>
+					</select>
+				</div>
+				<div>
+					<table>
+						<tr th:each="question, rowStat : *{questions}">
+							<td>
+								<input th:required="required" name="question" type="text"
+									th:field="*{questions[__${rowStat.index}__].question}" placeholder="question..." />
+							</td>
+						</tr>
+					</table>
+					<button name="addQuestion" type="submit">Add Questions</button>
+				</div>
+				<button type="submit">Add Referendum</button>
+			</form>
+		</div>
+	</main>
+	<footer>
+		<small th:text="|&copy; Copyright ${#dates.year(#dates.createNow())} Sa_blesavim_imenom.org|" />
+	</footer>
+	<script src="/js/main.js"></script>
+</body>
+
+</html>

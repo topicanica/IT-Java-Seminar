@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Error</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+</head>
+
+<body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+    <h2>🚨🚑🚨Oh no, you've encountered an error!🚨🚑🚨</h2>
+    <h4>Blame it on the bad programmer who coded this application.</h4>
+    <h6 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h6>
+    <p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>
+    <a href="index.html" th:href="@{/home}">Back to Home Page</a>
+</body>
+
+</html>
